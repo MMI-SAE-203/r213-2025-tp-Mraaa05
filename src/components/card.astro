@@ -1,0 +1,66 @@
+---
+export interface Props {
+  nomMaison: string;
+  adresse: string;
+  nbChambres: number;
+  nbSdb: number;
+  prix: number;
+  surface: number;
+  imgUrl: string;
+  favori: boolean;
+}
+
+const { nomMaison, adresse, nbChambres, nbSdb, prix, surface, imgUrl, favori } = Astro.props;
+---
+
+<div class="card">
+  <img src={imgUrl} alt={nomMaison} class="card-img" />
+  <div class="card-content">
+    <h2>{nomMaison}</h2>
+    <p class="adresse">{adresse}</p>
+    <p>🛏 {nbChambres} chambres · 🛁 {nbSdb} salles de bain</p>
+    <p>📏 {surface} m² · 💰 {prix} €/mois</p>
+    {favori && <span class="favori">⭐ Favori</span>}
+  </div>
+</div>
+
+<style>
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  margin: 10px 0;
+  max-width: 500px;
+}
+
+.card-img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 12px;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.adresse {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.favori {
+  background: #ffcc00;
+  color: #000;
+  padding: 3px 6px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+}
+</style>
